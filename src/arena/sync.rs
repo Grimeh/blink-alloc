@@ -47,6 +47,17 @@ impl ArenaSync {
     }
 
     #[inline(always)]
+    pub fn root_chunk_size(&self) -> usize {
+        let inner = self.inner.read();
+        if let Some(root) = inner.root {
+            unsafe { (&*root.as_ptr()).cap() }
+            // (&*root).cap()
+        } else {
+            0
+        }
+    }
+
+    #[inline(always)]
     pub unsafe fn alloc_fast(&self, layout: Layout) -> Option<NonNull<[u8]>> {
         let inner = self.inner.read();
 

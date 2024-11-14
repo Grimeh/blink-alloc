@@ -166,6 +166,11 @@ where
         &self.allocator
     }
 
+    #[inline(always)]
+    pub fn chunk_size(&self) -> usize {
+        self.arena.root_chunk_size()
+    }
+
     /// Creates new blink allocator that uses global allocator
     /// to allocate memory chunks.
     /// With this method you can specify initial chunk size.

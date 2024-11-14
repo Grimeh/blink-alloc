@@ -273,7 +273,7 @@ macro_rules! with_cursor {
             }
 
             #[inline(always)]
-            fn cap(&self) -> usize {
+            pub fn cap(&self) -> usize {
                 // Safety: `base` fits `base..=self` range.
                 unsafe { self.offset_from_end(self.base()) }
             }
