@@ -280,6 +280,12 @@ where
         }
     }
 
+    #[inline(always)]
+    #[cfg(feature = "sync")]
+    pub fn chunk_size(&self) -> usize {
+        self.arena.last_chunk_size()
+    }
+
     /// Unwrap this allocator, returning the underlying allocator.
     /// Leaks allocated chunks.
     ///
